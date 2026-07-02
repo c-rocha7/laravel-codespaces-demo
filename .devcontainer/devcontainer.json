@@ -1,0 +1,37 @@
+// https://aka.ms/devcontainer.json
+{
+    "name": "Laravel + MySQL (Sail)",
+    "dockerComposeFile": [
+        "../docker-compose.yml"
+    ],
+    "service": "laravel.test",
+    "workspaceFolder": "/var/www/html",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "bmewburn.vscode-intelephense-client",
+                "mikestead.dotenv",
+                "amiralizadeh9480.laravel-extra-intellisense",
+                "onecentlin.laravel5-snippets",
+                "onecentlin.laravel-blade",
+                "esbenp.prettier-vscode"
+            ],
+            "settings": {
+                "php.validate.executablePath": "/usr/bin/php"
+            }
+        }
+    },
+    "remoteUser": "sail",
+    "postCreateCommand": "bash .devcontainer/post-create.sh",
+    "forwardPorts": [80, 5173],
+    "portsAttributes": {
+        "80": {
+            "label": "Laravel App",
+            "onAutoForward": "notify"
+        },
+        "5173": {
+            "label": "Vite Dev Server",
+            "onAutoForward": "silent"
+        }
+    }
+}
